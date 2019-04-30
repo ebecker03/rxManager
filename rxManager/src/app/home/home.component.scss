@@ -1,0 +1,40 @@
+ .container {
+    //  background-image: url(../../assets/pics/prescription-pad-goodrx-1024x576.png);
+    //  background-repeat: no-repeat;
+    //  background-position-x: 10%;
+    background-color: rgba(0, 57, 143, 0.781);
+    margin: 0;
+ }
+ .center {
+    text-align: center;
+    padding: 1%;
+    margin: 0.5%;
+    font-size: 1.25em;
+}
+
+.right {
+    text-align: right;
+    margin-right: 3%;
+}
+
+input {
+    margin: 1%;
+    font-size: 1.15em;
+}
+
+button {
+    margin: 1%;
+    font-size: 1.15em;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: Yellow;
+    text-decoration: underline;
+}
+
+

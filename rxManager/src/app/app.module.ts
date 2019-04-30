@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -42,6 +41,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -89,7 +91,8 @@ import { FooterComponent } from './footer/footer.component';
     MatSortModule,
     MatPaginatorModule,
     AppRoutingModule,
-
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

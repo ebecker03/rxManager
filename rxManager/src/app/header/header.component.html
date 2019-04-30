@@ -4,7 +4,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <nav>
-  <button mat-stroked-button>Home</button>
-  <button mat-stroked-button>Register</button>
-  <button mat-stroked-button>About Us</button>
+  <button mat-stroked-button [routerLink]="['/home']">Home</button>
+  <button mat-stroked-button [routerLink]="['/signUp']">Register</button>
+  <button mat-stroked-button [routerLink]="['/aboutUs']">About Us</button>
 </nav>

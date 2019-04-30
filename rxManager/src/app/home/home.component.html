@@ -1,18 +1,26 @@
-<h2>Sign In</h2>
-<br>
-<label for="userName">
-  Username
-  <input type="text" id="userName" placeholder="Username">
-</label>
-<br>
-<br>
-<label for="passWord">
-  Password
-<input type="text" id="passWord" placeholder="Password">
-</label>
-<br>
-<br>
-<button mat-raised-button>Submit</button>
-<br>
-<br>
-<a [routerLink]="['/signUp']">Sign Up</a>
+<div class="container">
+  <div class="right">
+    <a [routerLink]="['/signUp']">Sign Up</a>
+  </div>
+  <div class="center">
+    <h2>Sign In</h2>
+  </div>
+  <div class="center">
+    <label for="userName">
+      Username:
+      <input required ngModel name="userName" #userName="ngModel" (change)="log(userName)" type="text" id="userName"
+        placeholder="Username">
+    </label>
+    <br>
+    <br>
+    <label for="passWord">
+      Password:
+      <input type="text" id="passWord" placeholder="Password">
+    </label>
+    <br>
+    <br>
+    <button mat-raised-button>Submit</button>
+    <br>
+    <br>
+  </div>
+</div>
