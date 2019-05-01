@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, AbstractControl, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { AlertService } from '../services/alert.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -7,66 +11,49 @@ import { FormGroup, AbstractControl, ValidatorFn } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  registration: FormGroup;
+  loading = false;
+  submitted = false;
 
-  constructor() { }
-  // validatePassword(): ValidatorFn {
-  //   return (control: AbstractControl) => {
-  //     let isValid = false;
-  //     if (control && control instanceof FormGroup) {
-  //       let group = control as FormGroup;
-  //       if (group.controls['passwordA'] && group.controls['passwordB']) {
-  //         isValid = group.controls['passwordA'].value == group.controls['passwordB'].value;
-  //       }
-  //     }
-  //     if (isValid) {
-  //       return null;
-  //     } else {
-  //       return { 'passwordCheck': 'failed' }
-  //     }
-  //   }
-  // }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private userService: UserService,
+    private alertService: AlertService
+    ) { }
+  
 
   ngOnInit() {
+    this.registration = this.formBuilder.group({
+      firstName: ['', Validators.required, Validators.minLength(3)],
+      userName: ['', Validators.required, Validators.minLength(3)],
+      password: ['', Validators.required, Validators.minLength(6)],
+      confirmPassword: ['', Validators.required, Validators.minLength(6)]
+    })
   }
 
+  get f() {return this.registration.controls};
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.registration.invalid){
+      return;
+    }
+    this.loading = true;
+    this.userService.register(this.registration.value)
+    .pipe(first())
+    .subscribe(
+      data => {
+        this.alertService.success('Registration Successful', true);
+        this.router.navigate(['/home']);
+      },
+      error => {
+        this.alertService.error(error);
+        this.loading = false;
+      })
+
+  }
 }
 
-// import { Component } from '@angular/core';
-// import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
-// import { ErrorStateMatcher } from '@angular/material/core';
 
-// export class MyErrorStateMatcher implements ErrorStateMatcher {
-//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-//     const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-//     const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
-
-//     return (invalidCtrl || invalidParent);
-//   }
-// }
-
-// /** @title Input with a custom ErrorStateMatcher */
-// @Component({
-//   selector: 'input-error-state-matcher-example',
-//   templateUrl: './input-error-state-matcher-example.html',
-//   styleUrls: ['./input-error-state-matcher-example.css'],
-// })
-// export class InputErrorStateMatcherExample {
-//   myForm: FormGroup;
-
-//   matcher = new MyErrorStateMatcher();
-
-//   constructor(private formBuilder: FormBuilder) {
-//     this.myForm = this.formBuilder.group({
-//       password: ['', [Validators.required]],
-//       confirmPassword: ['']
-//     }, { validator: this.checkPasswords });
-
-//   }
-
-//   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-//     let pass = group.controls.password.value;
-//     let confirmPass = group.controls.confirmPassword.value;
-
-//     return pass === confirmPass ? null : { notSame: true }
-//   }
-// }

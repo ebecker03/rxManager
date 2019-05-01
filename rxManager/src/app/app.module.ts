@@ -45,6 +45,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { PasswordDirective } from './password.directive';
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
+import { AlertComponent } from './directive/alert/alert.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator
     FooterComponent,
     RegisterComponent,
     PasswordDirective,
-    ConfirmEqualValidatorDirective
+    ConfirmEqualValidatorDirective,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
