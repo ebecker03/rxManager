@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-flow: row, wrap;
+}
+
+.info {
+    flex-basis: 1, 1, 25%;
+}
+
+
+
+
+// li {
+//     margin: 10px;
+// }
+
+// input {
+//     display: block;
+//     width: 25%;
+//     margin: auto;
+// }
+
+// label {
+//     display: block;
+//     margin-bottom: 10px;
+//     text-align: center;
+// }
+// .list {
+//     float: right;
+//     clear: both;
+//     margin-right: 5%;
+//     margin-top: -22%;
+// }
+
+// .container {
+//     background-color: rgba(0, 57, 143, 0.89);
+//     height: 50%;
+//     padding-top: 5%
+// }
+
+// .info {
+//     margin-left: 5%;
+//     width: 50%;
+// }

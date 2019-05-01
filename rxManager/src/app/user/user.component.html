@@ -1,41 +1,27 @@
-<!-- Medication Name:<input [(ngModel)]="meds.name" placeholder="Medication Name">
-<br>
-<br>
-Medication Strength:<input [(ngModel)]="meds.strength" placeholder="Medication Strength">
-<br>
-<br>
-Medication Directions:<input [(ngModel)]="meds.directions" placeholder="Medication Directions">
-<br>
-<br>
-  <p>Name: {{name.value}}</p>
-  <p>Strength: {{strength.value}}</p>
-  <p>Directions: {{directions.value}}</p>
-
-  <button>Add To Medication List</button>
-
-  <h2>Current Medications</h2>
-
-  <div>
-    <p>{{meds.name}}</p>
-    <p>{{meds.strength}}</p>
-    <p>{{meds.directions}}</p>
-  </div> -->
-
-<form>
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input required 
-    minlength="3" 
-    ngModel name="firstName" 
-    (change)="log(firstName)" 
-    #firstName="ngModel" 
-    id="firstName" 
-    type="text" 
-    class="form-control">
-    <div *ngIf="firstName.touched && !firstName.valid">
-      <div *ngIf="firstName.errors.required">First name is required.</div>
-      <div *ngIf="firstName.errors.minlength">First name requires minimum {{ firstName.errors.minlength.requiredLength }} characters.</div>
-    </div>
+<div class="container">
+  <div class="info">
+    <label for="medName">Medication Name:</label>
+    <input id="medName" [(ngModel)]="medName" placeholder="Name">
+    <label for="medStrength">Medication Strength:</label>
+    <input id="medStrength" [(ngModel)]="medStrength" placeholder="Strength">
+    <label for="medDirections">Medication Directions:</label>
+    <input id="medDirections" [(ngModel)]="medDirections" placeholder="Directions">
+    <button (click)="addMed()">Add To Medication List</button>
   </div>
-  <button class="btn btn-primary">Submit</button>
-</form>
+
+  <div class="list">
+    <h2>Current Medications</h2>
+    <ol>
+      <li *ngFor="let rx of med; let i = index">
+        Medication Name: {{rx.Name | json}}
+        <br>
+        Medication Strength: {{rx.Strength | json}}
+        <br>
+        Medication Directions: {{rx.Directions | json}}
+        <br>
+        <button (click)="deleteMed(i)">Delete Medication</button>
+      </li>
+    </ol>
+    <br>
+  </div>
+</div>

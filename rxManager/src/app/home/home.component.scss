@@ -1,9 +1,17 @@
  .container {
-    //  background-image: url(../../assets/pics/prescription-pad-goodrx-1024x576.png);
-    //  background-repeat: no-repeat;
+     background-image: url(../../assets/pics/prescription-pad-goodrx-1024x576.png);
+     background-repeat: no-repeat;
+     background-size: 100%;
     //  background-position-x: 10%;
-    background-color: rgba(0, 57, 143, 0.781);
+    
     margin: 0;
+    height: 70%;
+
+.color {
+    background-color: rgba(0, 57, 143, 0.89);
+    height: 100%;
+    
+}
  }
  .center {
     text-align: center;

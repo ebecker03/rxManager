@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MedData } from '../med-data';
+
+
+
 
 
 
@@ -11,20 +13,35 @@ import { MedData } from '../med-data';
   
 })
 export class UserComponent implements OnInit {
-  // meds: MedData = {
-  //   name: "value",
-  //   strength: 'value',
-  //   directions: 'value'
-  // }
-  log(x) {console.log(x);}
-  // value: string = "";
-  
+  medName: any;
+  medStrength: string = '';
+  medDirections: string = '';
+  med: Object[] = [];
   constructor() { }
+  
+  addMed(){
+    
+    this.med.push({
+      Name: this.medName,
+      Strength: this.medStrength,
+      Directions: this.medDirections
+    })
+
+    this.medName = '';
+    this.medStrength = '';
+    this.medDirections = '';
+
+    console.log(this.med);
+  }
+
+  deleteMed(i){
+    this.med.splice(i, 1);
+  }
 
   
-  // onEnter(value: string) {this.value=value;}
-  
   ngOnInit() {
+
+    
   }
 
 }
