@@ -1,41 +1,36 @@
 <div class="container">
-  <form [formGroup]="registration" (ngSubmit)="onSubmit()">
-    <div class="form-group" id="wholeForm">
+  <form [formGroup]="registration">
+    <div id="wholeForm">
       <h2>Registration Form</h2>
       <label for="firstName">First Name</label>
-      <input required minlength="3" ngModel name="firstName" (change)="log(firstName)" #firstName="ngModel"
-        id="firstName" type="text" placeholder="First Name" class="form-control">
-      <div *ngIf="firstName.touched && !firstName.valid">
-        <div *ngIf="firstName.errors.required">First name is required.</div>
-        <div *ngIf="firstName.errors.minlength">First name requires minimum
-          {{ firstName.errors.minlength.requiredLength }} characters.</div>
+      <input formControlName="firstName" placeholder="First Name">
+      <div *ngIf="firstName.invalid && firstName.touched">
+        Name Required
       </div>
-      <label for="userName">Enter Username</label>
-      <input required minlength="3" ngModel name="userName" #userName="ngModel" id="userName" type="text"
-        placeholder="Username" class="form-control">
-      <div *ngIf="userName.touched &&!userName.valid">
-        <div *ngIf="userName.errors.required">Username is required.</div>
-        <div *ngIf="userName.errors.minlength">Username requires minimum {{ userName.errors.minlength.requiredLength }}
-          characters.</div>
+
+      <label for="lastName">Last Name</label>
+      <input formControlName="lastName" placeholder="Last Name">
+      <div *ngIf="lastName.invalid && lastName.touched">
+        Last Name Required
       </div>
-      
-      <div  class="form-group" [class.has-error]="password.touched && password.invalid">
-        <label for="password" class="control-label">Password</label>
-        <input required minlength="6" id="password" name="password" type="text" placeholder="Password"
-          class="form-control" ngModel name="password" #password="ngModel">
-        <div class="help-block" *ngIf="password.touched && password.errors?.required">Password is Required</div>
+
+      <label for="userName">Username</label>
+      <input formControlName="userName" Placeholder="Username">
+      <div *ngIf="userName.invalid && userName.touched">
+        Username Required
       </div>
-      <div class="form-group" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
-        <label for="confirmPassword" class="control-label">Confirm Password</label>
-        <input required minlength="6" id="confirmPassword" name="confirmPassword" appConfirmEqualValidator="password" type="text" placeholder="Confirm Password"
-          class="form-control" ngModel name="confirmPassword" #confirmPassword="ngModel">
-        <div class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.required">Confirm Password is required</div>
-        <div class="help-block" 
-        *ngIf="confirmPassword.touched && 
-        confirmPassword.errors?.notEqual">Passwords Do Not Match</div>
+
+      <label for="passWord">Password</label>
+      <input formControlName="passWord" placeholder="Password">
+      <div *ngIf="passWord.invalid  && passWord.touched">
+       Password Required
       </div>
       <div>
-      <button [disabled]="loading">Register</button>
+        <mat-checkbox formControlName="agree" color="primary">Are you Sure this is Correct?</mat-checkbox>
+      </div>
+      <br>
+      <div>
+        <button [disabled]="registration.invalid" mat-raised-button>Register</button>
       </div>
     </div>
   </form>

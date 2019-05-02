@@ -40,7 +40,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { PasswordDirective } from './password.directive';
@@ -97,7 +97,8 @@ import { AlertComponent } from './directive/alert/alert.component';
     MatPaginatorModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

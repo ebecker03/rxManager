@@ -7,27 +7,25 @@
       <h2>Sign In</h2>
     </div>
     <div class="center">
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
+      <form [formGroup]="loginForm">
+        <div>
           <label for="username">Username:</label>
-          <input type="text" formControlName="username" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Username is Required</div>
+          <input formControlName="userName" placeholder="Username">
+          <div *ngIf="userName.invalid && userName.touched">
+            Username Required
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="text" formControlName="password" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is Required</div>
+        <div>
+          <label for="passWord">Password:</label>
+          <input formControlName="passWord" placeholder="Password">
+          <div *ngIf="passWord.invalid && passWord.touched">
+            Password Required
           </div>
         </div>
 
-        <div class="form-group">
-          <button [disabled]="loading" mat-raised-button>Submit</button>
+        <div>
+          <button [disabled]="loginForm.invalid" mat-raised-button>Submit</button>
         </div>
       </form>
     </div>

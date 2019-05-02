@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
-import { AlertService } from '../services/alert.service';
-import { first } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-register',
@@ -11,48 +8,36 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  
   registration: FormGroup;
-  loading = false;
-  submitted = false;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private userService: UserService,
-    private alertService: AlertService
-    ) { }
+  constructor(private fb: FormBuilder) { }
   
 
   ngOnInit() {
-    this.registration = this.formBuilder.group({
-      firstName: ['', Validators.required, Validators.minLength(3)],
-      userName: ['', Validators.required, Validators.minLength(3)],
-      password: ['', Validators.required, Validators.minLength(6)],
-      confirmPassword: ['', Validators.required, Validators.minLength(6)]
+    this.registration = this.fb.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      userName: ['', [Validators.required]],
+      passWord: ['', [Validators.required]],
+      agree: [false, [Validators.requiredTrue]]
     })
   }
 
-  get f() {return this.registration.controls};
+  get firstName() {
+    return this.registration.get('firstName');
+  }
 
-  onSubmit() {
-    this.submitted = true;
+  get lastName() {
+    return this.registration.get('lastName');
+  }
 
-    if (this.registration.invalid){
-      return;
-    }
-    this.loading = true;
-    this.userService.register(this.registration.value)
-    .pipe(first())
-    .subscribe(
-      data => {
-        this.alertService.success('Registration Successful', true);
-        this.router.navigate(['/home']);
-      },
-      error => {
-        this.alertService.error(error);
-        this.loading = false;
-      })
+  get userName() {
+    return this.registration.get('userName');
+  }
 
+  get passWord() {
+    return this.registration.get('passWord');
   }
 }
 
