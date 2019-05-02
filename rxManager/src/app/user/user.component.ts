@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
-
-
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -17,6 +13,8 @@ export class UserComponent implements OnInit {
   medStrength: string = '';
   medDirections: string = '';
   med: Object[] = [];
+  
+
   constructor() { }
   
   addMed(){
@@ -40,8 +38,5 @@ export class UserComponent implements OnInit {
 
   
   ngOnInit() {
-
-    
   }
-
 }
